@@ -8,7 +8,14 @@
   </head>
   <body>
     <% if (user) { %>
-      <h1>Hello, <%= user.username %></h1>
+      <nav>
+        <div id="actions">
+          <button></button>
+          <p>EliteMode</p>
+          <button>❤️</button>
+          <button>🛍️</button>
+        </div>
+      </nav>
       <p>
         <a href="/auth/sign-out">sign out</a>
       </p>
@@ -17,6 +24,5 @@
       <a href="/auth/sign-up">sign up</a>
       <a href="/auth/sign-in">sign in</a>
     <% } %>
-    <p><a href="/vip-lounge">Get into the VIP Users Only lounge!</a></p>
   </body>
 </html>

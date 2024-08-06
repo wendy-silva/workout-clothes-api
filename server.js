@@ -40,15 +40,6 @@ app.get('/', async (req, res) => {
   })
 })
 
-app.get('/vip-lounge', async (req, res) => {
-  if (req.session.user) {
-    res.send(`Welcome to the party ${req.session.user.username}`)
-  }
-  else {
-    res.redirect('/auth/sign-in')
-  }
-})
-
 app.get('/products', async (req, res) => {
   res.render('products.ejs')
 })
