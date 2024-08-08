@@ -70,7 +70,8 @@ authRouter.post('/sign-in', async (req, res) => {
       username: user.username
     }
 
-    res.redirect('/')
+    res.redirect('/clothes/products')
+    
   } catch (error) {
     console.error('Was not able to sign in', error)
   }

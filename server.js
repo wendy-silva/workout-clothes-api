@@ -9,6 +9,7 @@ import bodyParser from 'body-parser'
 
 
 import authController from './controllers/auth.js';
+import Clothes from './models/clothes.js';
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
+
+
 
 // Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
@@ -49,7 +52,16 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/products', async (req, res) => {
-  res.render('products.ejs')
+    res.render('clothes/products.ejs')
+  
+})
+
+app.get('/cart', async (req, res) => {
+  res.render('cart/cart.ejs');
+})
+
+app.get('/favorites', async (req, res) => {
+  res.render('cart/favorites.ejs')
 })
 
 app.use('/auth', authController)

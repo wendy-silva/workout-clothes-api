@@ -3,26 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <title>Home Page</title>
   </head>
   <body>
-    <% if (user) { %>
-      <nav>
-        <div id="actions">
-          <button></button>
-          <p>EliteMode</p>
-          <button>❤️</button>
-          <button>🛍️</button>
-        </div>
-      </nav>
-      <p>
-        <a href="/auth/sign-out">sign out</a>
-      </p>
-    <% } else { %>
-      <h1>Hello, Guest.</h1>
-      <a href="/auth/sign-up">sign up</a>
-      <a href="/auth/sign-in">sign in</a>
-    <% } %>
+    <h1>Welcome to EliteMode!</h1>
+    <p>
+      Join the EliteMode community! We would be thrilled to have you on board.
+    </p>
+    <div>
+      <a href="/auth/sign-up">Sign Up</a>
+      <a href="/auth/sign-in">Sign In</a>
+    </div>
   </body>
 </html>
