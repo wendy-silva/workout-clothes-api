@@ -51,8 +51,8 @@ For my Unit 2 Project, I am developing a workout clothes app utilizing EJS templ
 
 | HTTP Method | Path              | CRUD                                           | Route Name                 |
 |-------------|-------------------|------------------------------------------------|----------------------------|
-| POST        | `/auth/sign-up`  | Create: Make new user                          | `registerUser`             |
-| POST        | `auth/sign-in`      | Create: Authenticate a user                    | `loginUser`                |
+| POST        | `/auth/sign-up`   | Create: Make new user                          | `registerUser`             |
+| POST        | `auth/sign-in`    | Create: Authenticate a user                    | `loginUser`                |
 | GET         | `/products`       | Read: Get all products                         | `getAllProducts`           |
 | GET         | `/products/:id`   | Read: Get a single product by ID               | `getProductById`           |
 | POST        | `/cart`           | Create: Add an item to the cart                | `addToCart`                |

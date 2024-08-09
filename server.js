@@ -9,7 +9,7 @@ import bodyParser from 'body-parser'
 
 
 import authController from './controllers/auth.js';
-import Clothes from './models/clothes.js';
+import clothesController from './controllers/clothesController.js';
 
 dotenv.config();
 
@@ -25,7 +25,17 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
+const products = [
+  { id: 1, name: 'Sports Bra', description: 'Light weight seamless material, great for running, cycling, and exercise', price: 25.00, quantity: 50, image: '/Assets/product1.png' },
+  { id: 2, name: 'Tank Top', description: 'Comfortable and loose designed for freedom of movement', price: 28.00, quantity: 50, image: '/Assets/product2.png' },
+  { id: 3, name: 'Long Sleeve', description: 'Comfortable and seamless', price: 30.00, quantity: 50, image: '/Assets/product3.png' }
+  ,
+]
 
+const client = redis.createClient();
+client.on('connect', () => {
+  console.log('Connected to Redis');
+});
 
 // Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
@@ -41,35 +51,28 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }))
+app.use('/auth', authController)
+app.use('/clothes', clothesController)
 
 app.set('view engine', 'jade');
+app.set('views', './views');
 
 // Routes
 app.get('/', async (req, res) => {
   res.render('index.ejs', {
-    user: req.session.user
+    user: req.session.user,
+    favorites: req.session.favorites || [],
+    cart: req.session.cart || []
   })
 })
 
-app.get('/products', async (req, res) => {
-    res.render('clothes/products.ejs')
-  
-})
-
 app.get('/cart', async (req, res) => {
-  res.render('cart/cart.ejs');
+  res.render('cart/cart.ejs', { cart: req.session.cart || [] });
 })
 
 app.get('/favorites', async (req, res) => {
-  res.render('cart/favorites.ejs')
+  res.render('cart/favorites.ejs', { favorites: req.session.favorites || [] })
 })
-
-app.use('/auth', authController)
-
-const client = redis.createClient();
-client.on('connect', () => {
-  console.log('Connected to Redis');
-});
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
