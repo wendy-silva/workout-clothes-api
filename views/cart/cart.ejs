@@ -46,12 +46,21 @@
       <% } else { %>
       <ul>
         <% cart.forEach(function(item) { %>
-        <li>
-          <h2><%= item.name %></h2>
-          <p>Description: <%= item.description %></p>
-          <p>Price: $<%= item.price.toFixed(2) %></p>
-          <p>Quantity: <%= item.quantity %></p>
-        </li>
+          <li>
+            <h2><%= item.name %></h2>
+            <p>Description: <%= item.description %></p>
+            <p>Price: $<%= item.price.toFixed(2) %></p>
+            <form action="/clothes/cart/updateCartItem" method="POST">
+              <input type="hidden" name="productId" value="<%= item._id %>">
+              <label for="quantity-<%= item._id %>">Quantity:</label>
+              <input type="number" id="quantity-<%= item._id %>" name="quantity" value="<%= item.quantity %>" min="1" >
+              <button type="submit">Update</button>
+            </form>
+            <form action="/clothes/cart/delete" method="POST" style="display:inline;">
+              <input type="hidden" name="productId" value="<%= item._id %>">
+              <button type="submit">Delete</button>
+            </form>
+          </li>
         <% }) %>
       </ul>
       <% } %>

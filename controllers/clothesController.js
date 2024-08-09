@@ -14,9 +14,8 @@ router.get('/products', async (req, res) => {
 });
 
 router.get('/cart', async (req, res) => {
-  console.log('hi')
-  // TODO figure out how to get req.session.cart into here
-  res.render('cart/cart.ejs', { cart: [] });
+  const cart = req.session.cart || [];
+  res.render('cart/cart.ejs', { cart });
 })
 
 router.get('/:productId', async (req, res) => {
@@ -47,7 +46,32 @@ router.post('/cart', async (req, res) => {
     res.render('cart/cart.ejs', { cart: req.session.cart })
   } catch (error) {
     console.error('Error adding to cart:', error);
-    res.status(500).send('An error occurred while adding to cart');
+    res.send('An error occurred while adding to cart');
+  }
+});
+
+router.post('/cart/updateCartItem', async (req, res) => {
+  const { productId, quantity } = req.body;
+  const newQuantity = parseInt(quantity, 10);
+  
+  if (newQuantity <= 0) {
+    req.session.message = 'Quantity must be at least 1';
+    return res.redirect('/clothes/cart');
+  }
+
+  if (newQuantity > 50) {
+    return res.send('Quantity exceeds inventory');
+  }
+
+  const cart = req.session.cart || [];
+  const item = cart.find(item => item._id.toString() === productId);
+
+  if (item) {
+    item.quantity = newQuantity;
+    req.session.cart = cart;
+    res.redirect('/clothes/cart');
+  } else {
+    res.send('Item not found in cart');
   }
 });
 
