@@ -25,18 +25,6 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
-const products = [
-  { id: 1, name: 'Sports Bra', description: 'Light weight seamless material, great for running, cycling, and exercise', price: 25.00, quantity: 50, image: '/Assets/product1.png' },
-  { id: 2, name: 'Tank Top', description: 'Comfortable and loose designed for freedom of movement', price: 28.00, quantity: 50, image: '/Assets/product2.png' },
-  { id: 3, name: 'Long Sleeve', description: 'Comfortable and seamless', price: 30.00, quantity: 50, image: '/Assets/product3.png' }
-  ,
-]
-
-const client = redis.createClient();
-client.on('connect', () => {
-  console.log('Connected to Redis');
-});
-
 // Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
 // Middleware for using HTTP verbs such as PUT or DELETE
@@ -51,8 +39,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }))
-app.use('/auth', authController)
-app.use('/clothes', clothesController)
 
 app.set('view engine', 'jade');
 app.set('views', './views');
@@ -60,19 +46,23 @@ app.set('views', './views');
 // Routes
 app.get('/', async (req, res) => {
   res.render('index.ejs', {
-    user: req.session.user,
-    favorites: req.session.favorites || [],
-    cart: req.session.cart || []
+    user: req.session.user
   })
 })
 
-app.get('/cart', async (req, res) => {
-  res.render('cart/cart.ejs', { cart: req.session.cart || [] });
-})
 
 app.get('/favorites', async (req, res) => {
-  res.render('cart/favorites.ejs', { favorites: req.session.favorites || [] })
+  res.render('cart/favorites.ejs')
 })
+
+app.use('/auth', authController)
+
+const client = redis.createClient();
+client.on('connect', () => {
+  console.log('Connected to Redis');
+});
+
+app.use('/clothes', clothesController)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

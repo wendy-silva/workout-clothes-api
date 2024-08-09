@@ -19,10 +19,10 @@ const cartSchema = new mongoose.Schema({
         required: true,
         min: 0
     },
-    users: [{
+    customer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User' // Reference to the User model
-    }]
+        ref: 'User',
+    },
 });
 
 const Cart = mongoose.model('Cart', cartSchema);

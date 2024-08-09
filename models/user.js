@@ -13,11 +13,11 @@ const userSchema = new mongoose.Schema({
     },
     favorites: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Favorite' // Reference to the Favorite model
+        ref: 'Favorite' 
     }],
     cart: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cart' // Reference to the Cart model
+        ref: 'Cart' 
     }]
 });
 
