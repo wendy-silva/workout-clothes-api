@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/women.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <title>Womens Clothes</title>
-</head>
-<body>
-    <h1>This is womens clothes!</h1>
-</body>
+  </head>
+  <body>
+    <nav>
+      <div>
+        <button onclick="openMenu()">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+      <div id="brand">
+        <p>EliteMode</p>
+      </div>
+      <div>
+        <button>
+          <a href="/favorites" class="favorites-button">
+            <span class="material-symbols-outlined">favorite</span>
+          </a>
+        </button>
+        <button>
+          <a href="/clothes/cart" class="cart-button">
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </a>
+        </button>
+      </div>
+    </nav>
+
+    <h1>Shop Women's Clothes</h1>
+    <main>
+      <% clothes.forEach(function(product) { %>
+      <article class="product">
+        <div class="img-placeholder">
+          <img src="<%= product.image %>" alt="<%= product.name %>" />
+        </div>
+        <div class="card-footer">
+          <h2><%= product.name %></h2>
+          <p>Description: <%= product.description %></p>
+          <p>Price: $<%= product.price.toFixed(2) %></p>
+
+          <form action="/favorites" method="POST">
+            <input type="hidden" name="productId" value="<%= product.id %>" />
+            <button type="submit">
+              <span class="material-symbols-outlined">heart_plus</span>
+            </button>
+          </form>
+          <form action="/clothes/cart" method="POST">
+            <input type="hidden" name="productId" value="<%= product.id %>" />
+            <button type="submit">
+              <span class="material-symbols-outlined">add_shopping_cart</span>
+            </button>
+          </form>
+        </div>
+      </article>
+      <% }) %>
+    </main>
+
+    <div id="menu" class="menu">
+      <button class="close-btn" onclick="closeMenu()">✖</button>
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="/clothes/products" class="home-button">Home</a></li>
+        <li><a href="/auth/sign-out">sign out</a></li>
+      </ul>
+    </div>
+
+    <script src="/js/script.js"></script>
+  </body>
 </html>
