@@ -11,11 +11,11 @@ For my Unit 2 Project, I am developing a workout clothes app utilizing EJS templ
 
 ## Wire Frame
 
-![Workout Clothes App](./Assets/Wireframe.jpg)
+![Workout Clothes App](./public/Assets/Wireframe.jpg)
 
-![Workout Clothes App](./Assets/Wireframe2.png)
+![Workout Clothes App](./public/Assets/Wireframe2.png)
 
-![Workout Clothes App](./Assets/Wireframe3.png)
+![Workout Clothes App](./public/Assets/Wireframe3.png)
 
 ## User Story                                                         
 
@@ -44,7 +44,7 @@ For my Unit 2 Project, I am developing a workout clothes app utilizing EJS templ
 
 ## ERD
 
-![ERD](./Assets/ERD.png)
+![ERD](./public/Assets/ERD.png)
 
 
 ## Route Table
