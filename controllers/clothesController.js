@@ -75,4 +75,14 @@ router.post('/cart/updateCartItem', async (req, res) => {
   }
 });
 
+router.post('/cart/deleteCartItem', (req, res) => {
+  const { productId } = req.body;
+
+  const cart = req.session.cart || [];
+  req.session.cart = cart.filter(item => item._id.toString() !== productId);
+
+  res.redirect('/clothes/cart');
+});
+
+
 export default router;

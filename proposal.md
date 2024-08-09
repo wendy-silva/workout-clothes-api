@@ -58,7 +58,7 @@ For my Unit 2 Project, I am developing a workout clothes app utilizing EJS templ
 | POST        | `/cart`           | Create: Add an item to the cart                | `addToCart`                |
 | GET         | `/cart`           | Read: Get all items in the cart                | `getCartItems`             |
 | PUT         | `/cart/:id`       | Update: Edit quantity of an item in the cart   | `updateCartItem`           |
-| DELETE      | `/cart/:id`       | Delete: Remove an item from the cart           | `removeCartItem`           |
+| DELETE      | `/cart/:id`       | Delete: Delete an item from the cart           | `deleteCartItem`           |
 
 
 ## Timeline
