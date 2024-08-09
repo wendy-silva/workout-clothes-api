@@ -9,12 +9,33 @@ router.get("/products", async (req, res) => {
     res.render("clothes/products.ejs", { clothes });
   } catch (error) {
     console.error("Error fetching clothes:", error);
-    res.status(500).send("An error occurred while fetching products");
+    res.send("An error occurred while fetching products");
+  }
+});
+
+router.get('/products/men', async (req, res) => {
+  try {
+    const menClothes = await Clothes.find({ category: 'men' });
+    res.render('clothes/men.ejs', { clothes: menClothes });
+  } catch (error) {
+    console.error('Error fetching men’s clothes:', error);
+    res.send('An error occurred while fetching men’s products');
+  }
+});
+
+router.get('/products/women', async (req, res) => {
+  try {
+    const womenClothes = await Clothes.find({ category: 'women' });
+    res.render('clothes/women.ejs', { clothes: womenClothes });
+  } catch (error) {
+    console.error('Error fetching women’s clothes:', error);
+    res.send('An error occurred while fetching women’s products');
   }
 });
 
 router.get("/cart", async (req, res) => {
   const cart = req.session.cart || [];
+
   res.render("cart/cart.ejs", { cart });
 });
 
@@ -52,7 +73,7 @@ router.post("/cart", async (req, res) => {
   }
 });
 
-router.post("/cart/updateCartItem", async (req, res) => {
+router.put("/cart/updateCartItem", async (req, res) => {
   const { productId, quantity } = req.body;
   const newQuantity = parseInt(quantity, 10);
 
@@ -77,7 +98,7 @@ router.post("/cart/updateCartItem", async (req, res) => {
   }
 });
 
-router.post("/cart/deleteCartItem", (req, res) => {
+router.delete("/cart/deleteCartItem", (req, res) => {
   const { productId } = req.body;
 
   const cart = req.session.cart || [];

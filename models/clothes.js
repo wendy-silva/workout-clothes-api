@@ -19,6 +19,11 @@ const clothesSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
+  category: {
+    type: String,
+    required: true,
+    enum: ['men', 'women']
+  },
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

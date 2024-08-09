@@ -17,6 +17,11 @@ const app = express();
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT || "3000";
 
+const client = redis.createClient();
+client.on("connect", () => {
+  console.log("Connected to Redis");
+});
+
 mongoose.connect(process.env.MONGODB_URI);
 
 mongoose.connection.on("connected", () => {
@@ -39,6 +44,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use("/auth", authController);
+app.use("/clothes", clothesController);
 
 app.set("view engine", "jade");
 app.set("views", "./views");
@@ -53,15 +60,6 @@ app.get("/", async (req, res) => {
 app.get("/favorites", async (req, res) => {
   res.render("cart/favorites.ejs");
 });
-
-app.use("/auth", authController);
-
-const client = redis.createClient();
-client.on("connect", () => {
-  console.log("Connected to Redis");
-});
-
-app.use("/clothes", clothesController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
