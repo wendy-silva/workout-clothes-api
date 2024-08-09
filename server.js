@@ -1,20 +1,18 @@
-import dotenv from 'dotenv'
-import express from 'express';
-import mongoose from 'mongoose';
-import methodOverride from 'method-override';
-import morgan from 'morgan';
-import session from 'express-session';
-import redis from 'redis';
-import bodyParser from 'body-parser'
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+import methodOverride from "method-override";
+import morgan from "morgan";
+import session from "express-session";
+import redis from "redis";
+import bodyParser from "body-parser";
 
-
-import authController from './controllers/auth.js';
-import clothesController from './controllers/clothesController.js';
+import authController from "./controllers/auth.js";
+import clothesController from "./controllers/clothesController.js";
 
 dotenv.config();
 
 const app = express();
-
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT || "3000";
@@ -30,39 +28,40 @@ app.use(express.urlencoded({ extended: false }));
 // Middleware for using HTTP verbs such as PUT or DELETE
 app.use(methodOverride("_method"));
 // Morgan for logging HTTP requests
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 // Add Session middleware
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true,
-}))
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-app.set('view engine', 'jade');
-app.set('views', './views');
+app.set("view engine", "jade");
+app.set("views", "./views");
 
 // Routes
-app.get('/', async (req, res) => {
-  res.render('index.ejs', {
-    user: req.session.user
-  })
-})
-
-
-app.get('/favorites', async (req, res) => {
-  res.render('cart/favorites.ejs')
-})
-
-app.use('/auth', authController)
-
-const client = redis.createClient();
-client.on('connect', () => {
-  console.log('Connected to Redis');
+app.get("/", async (req, res) => {
+  res.render("index.ejs", {
+    user: req.session.user,
+  });
 });
 
-app.use('/clothes', clothesController)
+app.get("/favorites", async (req, res) => {
+  res.render("cart/favorites.ejs");
+});
+
+app.use("/auth", authController);
+
+const client = redis.createClient();
+client.on("connect", () => {
+  console.log("Connected to Redis");
+});
+
+app.use("/clothes", clothesController);
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

@@ -1,38 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Allura&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Caveat:wght@400..700&family=Jacquard+12&family=Kalnia+Glaze:wght@100..700&family=Kode+Mono:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Allura&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Caveat:wght@400..700&family=Jacquard+12&family=Kalnia+Glaze:wght@100..700&family=Kode+Mono:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-color: rgb(255, 255, 255);
-    font-family: system-ui, sans-serif;
-    margin: 0;
-  }
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  font-family: system-ui, sans-serif;
+  margin: 0;
+}
 
 p {
-    margin: 0;
-    padding: 10px;
-  }
-  
-  section {
-    max-height: 400px;
-    background-image: url(../Assets/main.png);
-    background-size: cover;
-    background-position: center;
-    color: rgba(255, 255, 255, 0.953);
-    padding: 50px 72px;
-    text-align: center;
-  }
+  margin: 0;
+  padding: 10px;
+}
 
-  section h1, section h2 {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+section {
+  max-height: 400px;
+  background-image: url(../Assets/main.png);
+  background-size: cover;
+  background-position: center;
+  color: rgba(255, 255, 255, 0.953);
+  padding: 50px 72px;
+  text-align: center;
+}
+
+section h1,
+section h2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 h1,
 h2 {
   text-align: center;
-  
 }
 
 h1 {
@@ -46,167 +46,165 @@ h2 {
 }
 
 input {
-    height: 58px;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 29px;
-    border: 0px;
-    padding: 24px;
-    margin-top: 60px;
-  }
+  height: 58px;
+  width: 80%;
+  max-width: 600px;
+  border-radius: 29px;
+  border: 0px;
+  padding: 24px;
+  margin-top: 60px;
+}
 
 #brand {
-    font-family: 'Bodoni Moda SC', sans-serif;
-    font-size: 50px;
+  font-family: "Bodoni Moda SC", sans-serif;
+  font-size: 50px;
 }
 
 nav {
-    background-color: white;
-    padding: 5px 16px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-
-  #trending p {
-    background-color: white;
-    color: black;
-    border-radius: 50px;
-    padding: 6px 15px;
-    display: inline-block;
-    margin-top: 60px;
-  }
-
-  #brand {
-    display: flex;
-  }
-
-  main {
-    background-color: white;
-    padding: 0 50px 0 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .img-placeholder {
-    width: 100%;
-    padding-top: 75%; /* Aspect ratio of 4:3 */
-    background-color: gray;
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-
-  }
-
-  .img-placeholder img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  background-color: white;
+  padding: 5px 16px;
+  display: flex;
+  justify-content: space-between;
 }
 
-  .card-footer {
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .card-footer * {
-    margin-top: 8px;
-  }
+#trending p {
+  background-color: white;
+  color: black;
+  border-radius: 50px;
+  padding: 6px 15px;
+  display: inline-block;
+  margin-top: 60px;
+}
 
-  .product {
-    background-color: #f9f9f9;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: calc(33% - 40px);
-  }
-  
-  .product h2 {
-    margin: 0 0 10px;
-  }
-  
-  .product p {
-    margin: 5px 0;
-  }
-  
-  .product button {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .product button .material-symbols-outlined {
-    font-size: 24px;
-  }
-  
-  #menu {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #333;
-    color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    box-sizing: border-box;
-  }
-  
-  #menu h2 {
-    padding-left: 25px;
-  }
-  
-  #menu ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  #menu ul li {
-    padding: 8px 25px;
-  }
-  
-  #menu ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-  }
-  
-  #menu ul li a:hover {
-    background-color: #575757;
-  }
-  
-  .open-btn {
-    font-size: 30px;
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-  }
-  
-  .close-btn {
-    font-size: 30px;
-    cursor: pointer;
-    background-color: #333;
-    color: white;
-    border: none;
-    position: absolute;
-    top: 10px;
-    right: 25px;
-  }
-  
-  #content {
-    padding: 16px;
-    transition: margin-left 0.5s;
-    margin-left: 0;
-  }
+#brand {
+  display: flex;
+}
+
+main {
+  background-color: white;
+  padding: 0 50px 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.img-placeholder {
+  width: 100%;
+  padding-top: 75%; /* Aspect ratio of 4:3 */
+  background-color: gray;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-footer {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer * {
+  margin-top: 8px;
+}
+
+.product {
+  background-color: #f9f9f9;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: calc(33% - 40px);
+}
+
+.product h2 {
+  margin: 0 0 10px;
+}
+
+.product p {
+  margin: 5px 0;
+}
+
+.product button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.product button .material-symbols-outlined {
+  font-size: 24px;
+}
+
+#menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  box-sizing: border-box;
+}
+
+#menu h2 {
+  padding-left: 25px;
+}
+
+#menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#menu ul li {
+  padding: 8px 25px;
+}
+
+#menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+#menu ul li a:hover {
+  background-color: #575757;
+}
+
+.open-btn {
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+}
+
+.close-btn {
+  font-size: 30px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+}
+
+#content {
+  padding: 16px;
+  transition: margin-left 0.5s;
+  margin-left: 0;
+}

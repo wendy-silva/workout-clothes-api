@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/sign-up.css"/>
+    <link rel="stylesheet" href="../css/sign-up.css" />
     <title>Sign Up</title>
   </head>
   <body>
@@ -12,45 +12,41 @@
       <div>
         <label for="username">Username: (5-20 characters)</label>
         <input
-        type="text" 
-        name="username" 
-        id="username" 
-        minlength="5"
-        maxlength="20"
-        required 
+          type="text"
+          name="username"
+          id="username"
+          minlength="5"
+          maxlength="20"
+          required
         />
       </div>
       <div>
         <label for="email">Email:</label>
-        <input 
-        type="email" 
-        name="email" 
-        id="email"  
-        required
-        />
+        <input type="email" name="email" id="email" required />
       </div>
       <div>
         <label for="password">Password: (8+ characters)</label>
-        <input 
-        type="password" 
-        name="password" 
-        id="password"
-        minlength="8" 
-        required
+        <input
+          type="password"
+          name="password"
+          id="password"
+          minlength="8"
+          required
         />
       </div>
       <div>
         <label for="confirmPassword">Confirm Password:</label>
-        <input 
-        type="password" 
-        name="confirmPassword" 
-        id="confirmPassword" 
-        required 
+        <input
+          type="password"
+          name="confirmPassword"
+          id="confirmPassword"
+          required
         />
       </div>
       <button type="submit">Sign up</button>
-      <p>Have an account?
-      <a href="/auth/sign-in">Sign In</a>
+      <p>
+        Have an account?
+        <a href="/auth/sign-in">Sign In</a>
       </p>
     </form>
   </body>
