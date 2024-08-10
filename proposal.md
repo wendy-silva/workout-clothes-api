@@ -42,6 +42,8 @@ For my Unit 2 Project, I am developing a workout clothes app utilizing EJS templ
 
 - As a User, I would like to be able to apply a discount code.
 
+- As a User, I would like to add items to my favorites.
+
 ## ERD
 
 ![ERD](./public/Assets/ERD.png)

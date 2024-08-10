@@ -22,7 +22,7 @@
       </div>
       <div>
         <button>
-          <a href="/favorites" class="favorites-button">
+          <a>
             <span class="material-symbols-outlined">favorite</span>
           </a>
         </button>
@@ -35,6 +35,7 @@
     </nav>
 
     <h1>Shop Women's Clothes</h1>
+
     <main>
       <% clothes.forEach(function(product) { %>
       <article class="product">
@@ -45,13 +46,9 @@
           <h2><%= product.name %></h2>
           <p>Description: <%= product.description %></p>
           <p>Price: $<%= product.price.toFixed(2) %></p>
-
-          <form action="/favorites" method="POST">
-            <input type="hidden" name="productId" value="<%= product.id %>" />
-            <button type="submit">
+            <button>
               <span class="material-symbols-outlined">heart_plus</span>
             </button>
-          </form>
           <form action="/clothes/cart" method="POST">
             <input type="hidden" name="productId" value="<%= product.id %>" />
             <button type="submit">

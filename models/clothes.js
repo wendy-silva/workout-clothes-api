@@ -22,7 +22,7 @@ const clothesSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['men', 'women']
+    enum: ["men", "women"],
   },
   customer: {
     type: mongoose.Schema.Types.ObjectId,

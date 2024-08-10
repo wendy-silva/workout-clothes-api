@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import methodOverride from "method-override";
 import morgan from "morgan";
 import session from "express-session";
-import redis from "redis";
 import bodyParser from "body-parser";
 
 import authController from "./controllers/auth.js";
@@ -16,11 +15,6 @@ const app = express();
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT || "3000";
-
-const client = redis.createClient();
-client.on("connect", () => {
-  console.log("Connected to Redis");
-});
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -55,10 +49,6 @@ app.get("/", async (req, res) => {
   res.render("index.ejs", {
     user: req.session.user,
   });
-});
-
-app.get("/favorites", async (req, res) => {
-  res.render("cart/favorites.ejs");
 });
 
 app.listen(port, () => {
