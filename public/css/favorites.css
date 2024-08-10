@@ -126,8 +126,8 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #333;
-  color: white;
+  background-color: rgba(0, 0, 0, 0.953);
+  color: rgba(184, 183, 178, 0.9);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -148,13 +148,15 @@ nav {
 }
 
 #menu ul li a {
-  color: white;
+  color: rgba(184, 183, 178, 0.9);
   text-decoration: none;
   display: block;
 }
 
 #menu ul li a:hover {
   background-color: #575757;
+  border-radius: 5px;
+  border-width: 20px;
 }
 
 .open-btn {
@@ -169,8 +171,8 @@ nav {
 .close-btn {
   font-size: 30px;
   cursor: pointer;
-  background-color: #333;
-  color: white;
+  background: none;
+  color: rgba(184, 183, 178, 0.9);
   border: none;
   position: absolute;
   top: 10px;
