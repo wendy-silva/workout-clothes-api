@@ -55,6 +55,7 @@
           <h2><%= product.name %></h2>
           <p>Description: <%= product.description %></p>
           <p>Price: $<%= product.price.toFixed(2) %></p>
+          <p>Category: <%= product.category %> </p>
 
           <form action="/favorites" method="POST">
             <input type="hidden" name="productId" value="<%= product.id %>" />

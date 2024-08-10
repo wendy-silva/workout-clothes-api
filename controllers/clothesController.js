@@ -15,21 +15,21 @@ router.get("/products", async (req, res) => {
 
 router.get('/products/men', async (req, res) => {
   try {
-    const menClothes = await Clothes.find({ category: 'men' });
+    const menClothes = await Clothes.find({ category: 'Mens' });
     res.render('clothes/men.ejs', { clothes: menClothes });
   } catch (error) {
-    console.error('Error fetching men’s clothes:', error);
-    res.send('An error occurred while fetching men’s products');
+    console.error('Error fetching mens clothes:', error);
+    res.send('An error occurred while fetching mens products');
   }
 });
 
 router.get('/products/women', async (req, res) => {
   try {
-    const womenClothes = await Clothes.find({ category: 'women' });
+    const womenClothes = await Clothes.find({ category: 'Womens' });
     res.render('clothes/women.ejs', { clothes: womenClothes });
   } catch (error) {
-    console.error('Error fetching women’s clothes:', error);
-    res.send('An error occurred while fetching women’s products');
+    console.error('Error fetching womens clothes:', error);
+    res.send('An error occurred while fetching womens products');
   }
 });
 
