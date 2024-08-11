@@ -6,6 +6,10 @@ const router = express.Router();
 router.get("/products", async (req, res) => {
   try {
     const clothes = await Clothes.find();
+
+    clothes.forEach((product) => {
+      console.log("imgURL:", product.imgURL);
+    });
     res.render("clothes/products.ejs", { clothes });
   } catch (error) {
     console.error("Error fetching clothes:", error);

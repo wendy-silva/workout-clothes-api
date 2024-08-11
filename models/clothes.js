@@ -24,6 +24,10 @@ const clothesSchema = new mongoose.Schema({
     required: true,
     enum: ["men", "women"],
   },
+  imgURL: {
+    type: String,
+    required: true,
+  },
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
