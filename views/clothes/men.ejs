@@ -40,15 +40,15 @@
       <% clothes.forEach(function(product) { %>
       <article class="product">
         <div class="img-placeholder">
-          <img src="<%= product.imgURL %>" alt="<%= product.name %>">
+          <img src="<%= product.imgURL %>" alt="<%= product.name %>" />
         </div>
         <div class="card-footer">
           <h2><%= product.name %></h2>
           <p>Description: <%= product.description %></p>
           <p>Price: $<%= product.price.toFixed(2) %></p>
-            <button>
-              <span class="material-symbols-outlined">heart_plus</span>
-            </button>
+          <button>
+            <span class="material-symbols-outlined">heart_plus</span>
+          </button>
           <form action="/clothes/cart" method="POST">
             <input type="hidden" name="productId" value="<%= product.id %>" />
             <button type="submit">
