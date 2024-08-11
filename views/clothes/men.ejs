@@ -40,7 +40,7 @@
       <% clothes.forEach(function(product) { %>
       <article class="product">
         <div class="img-placeholder">
-          <img src="<%= product.image %>" alt="<%= product.name %>" />
+          <img src="<%= product.imgURL %>" alt="<%= product.name %>">
         </div>
         <div class="card-footer">
           <h2><%= product.name %></h2>
@@ -65,6 +65,7 @@
       <h2>Menu</h2>
       <ul>
         <li><a href="/clothes/products" class="home-button">Home</a></li>
+        <li><a href="/clothes/products/women">Shop Women</a></li>
         <li><a href="/auth/sign-out">sign out</a></li>
       </ul>
     </div>
