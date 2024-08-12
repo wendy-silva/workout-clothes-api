@@ -22,7 +22,7 @@
 
 *(Was used for guidance and explanation)*
 
-[ChatGBT](https://chatgpt.com)
+[ChatGPT](https://chatgpt.com)
 
 *(Was used to render images)*
 
