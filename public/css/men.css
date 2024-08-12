@@ -120,11 +120,6 @@ main {
   cursor: pointer;
   width: 100%;
   border-radius: 10px;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.product button:hover {
-  box-shadow: 0 0 30px 10px rgba(255, 255, 255, 1);
 }
 
 .product button .material-symbols-outlined {

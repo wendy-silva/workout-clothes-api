@@ -35,12 +35,12 @@ p {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: #000000;
   background-color: #333;
   padding: 10px 20px;
   border-radius: 5px;
   display: inline-block;
-  background: linear-gradient(to right, gray, black);
+  background: linear-gradient(180deg, rgb(240, 238, 238), rgb(88, 86, 86));
   box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.7);
   transition: box-shadow 0.3s ease-in-out;
 }
