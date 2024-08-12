@@ -36,6 +36,8 @@
 - JavaScript
 - CSS
 - EJS
+- Express
+- MongoDB
 
 
 ## Stretch Goals
