@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt, { hash } from "bcrypt";
 
 import User from "../models/user.js";
+import Cart from "../models/cart.js";
 
 const authRouter = express.Router();
 
@@ -19,32 +20,47 @@ authRouter.get("/sign-out", async (req, res) => {
 });
 
 authRouter.post("/sign-up", async (req, res) => {
-  // Check if the user exists
-  const user = await User.findOne({ username: req.body.username });
+  try {
+    // Check if the user exists
+    const existingUser = await User.findOne({ username: req.body.username });
 
-  if (user) {
-    res.send("User already exists");
-  }
+    if (existingUser) {
+      return res.status(400).send("User already exists");
+    }
 
-  // Check if the password matches confirm password
-  if (req.body.password !== req.body.confirmPassword) {
-    res.send("Password does not match Confirm Password");
-  }
+    // Check if the password matches confirm password
+    if (req.body.password !== req.body.confirmPassword) {
+      return res.status(400).send("Password does not match Confirm Password");
+    }
 
-  // Hash the provided password using bcrypt, salt 10 times
-  // and replace the req.body.password with the hashed password
-  const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-  req.body.password = hashedPassword;
+    // Hash the provided password using bcrypt, salt 10 times
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
-  // Create a new User
-  const newUser = await User.create(req.body);
+    // Create a new User
+    const newUser = await User.create({
+      username: req.body.username,
+      password: hashedPassword,
+    });
 
-  if (newUser) {
-    res.redirect(`/auth/sign-in`);
-  } else {
-    res.send("Error creating a user.");
+    // Create a cart for the new user
+    const userCart = await Cart.create({
+      userId: newUser._id,
+      products: [],
+    });
+
+    // Update the user with the reference to the cart
+    newUser.cart = userCart._id;
+    await newUser.save();
+
+    // Redirect the user to the sign-in page
+    res.redirect("/auth/sign-in");
+
+  } catch (error) {
+    console.error("Error creating a user:", error);
+    res.status(500).send("Error creating a user.");
   }
 });
+
 
 authRouter.post("/sign-in", async (req, res) => {
   try {
@@ -69,7 +85,12 @@ authRouter.post("/sign-in", async (req, res) => {
     // If there is other data you want to save to `req.session.user`, do so here!
     req.session.user = {
       username: user.username,
+      userId: user._id,
+      userCart: user.cart
     };
+
+    console.log('req.session.user: ', req.session.user)
+    console.log('req.session.user.userId: ', req.session.user.userId)
 
     res.redirect("/clothes/products");
   } catch (error) {
