@@ -54,13 +54,11 @@ authRouter.post("/sign-up", async (req, res) => {
 
     // Redirect the user to the sign-in page
     res.redirect("/auth/sign-in");
-
   } catch (error) {
     console.error("Error creating a user:", error);
     res.status(500).send("Error creating a user.");
   }
 });
-
 
 authRouter.post("/sign-in", async (req, res) => {
   try {
@@ -86,11 +84,8 @@ authRouter.post("/sign-in", async (req, res) => {
     req.session.user = {
       username: user.username,
       userId: user._id,
-      userCart: user.cart
+      userCart: user.cart,
     };
-
-    console.log('req.session.user: ', req.session.user)
-    console.log('req.session.user.userId: ', req.session.user.userId)
 
     res.redirect("/clothes/products");
   } catch (error) {
