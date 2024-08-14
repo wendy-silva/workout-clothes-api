@@ -102,10 +102,8 @@ router.post("/cart", async (req, res) => {
       userCart.products.push({ productId: product._id, quantity: 1 });
     }
 
-    // Save the updated cart back to the database
     await userCart.save();
 
-    // Populate the cart products with their details before rendering
     await userCart.populate('products.productId');
 
     // Render the cart view with the populated cart items
@@ -176,13 +174,41 @@ router.put("/cart/updateCartItem", async (req, res) => {
   }
 });
 
-router.delete("/cart/deleteCartItem", (req, res) => {
+router.delete("/cart/deleteCartItem", async (req, res) => {
   const { productId } = req.body;
 
-  const cart = req.session.cart || [];
-  req.session.cart = cart.filter((item) => item._id.toString() !== productId);
+  try {
+    // Ensure the user is logged in and gets the user ID from the session
+    if (!req.session.user || !req.session.user.userId) {
+      return res.status(401).send('User is not logged in');
+    }
 
-  res.redirect("/clothes/cart");
+    const userId = req.session.user.userId;
+
+    // Find the current user's cart by user ID
+    let userCart = await Cart.findOne({ userId });
+    if (!userCart) {
+      return res.status(404).send('Cart not found');
+    }
+
+    // Filter out the product to be deleted
+    userCart.products = userCart.products.filter((item) => item.productId.toString() !== productId);
+
+    await userCart.save();
+
+    await userCart.populate('products.productId');
+
+    // Render the cart view with the updated cart items
+    res.render("cart/cart.ejs", { cart: userCart.products.map(p => ({
+        ...p.productId.toObject(),
+        quantity: p.quantity
+    })) });
+
+  } catch (error) {
+    console.error("Error deleting from cart:", error);
+    res.status(500).send("An error occurred while deleting from cart");
+  }
 });
+
 
 export default router;
