@@ -40,20 +40,32 @@ router.get("/products/women", async (req, res) => {
 });
 
 router.get("/cart", async (req, res) => {
+  console.log("Cart route accessed");
   try {
-    const userId = req.session.user._id;
+    const userId = req.session.user.userId;
     const cart = await Cart.findOne({ userId }).populate("products.productId");
 
     if (!cart) {
       return res.render("cart/cart.ejs", { cart: [] });
     }
 
-    res.render("cart/cart.ejs", { cart: cart.products });
+    // Log populated cart structure
+    console.log("Populated Cart:", cart);
+
+    // Directly access populated productId properties
+    const products = cart.products.map(item => ({
+      ...item.productId.toObject(), // Converts to plain object if needed
+      quantity: item.quantity
+    }));
+
+    res.render("cart/cart.ejs", { cart: products });
   } catch (error) {
     console.error("Error fetching cart:", error);
     res.send("An error occurred while fetching the cart");
   }
 });
+
+
 
 router.get("/:productId", async (req, res) => {
   try {
